@@ -27,7 +27,7 @@ public class AppTest {
 		Assertions.assertEquals(new BigDecimal("130.75"), bankAccount.getAllTransactions().get(0).getBalance());
 	}
 
-	// first case of test (WITHDRAWAL)
+	// second case of test (WITHDRAWAL)
 	@Test
 	public void testWithdraw() {
 		// diposit an amount to the account
@@ -39,37 +39,38 @@ public class AppTest {
 		// check if the balance is correct after transaction withdrawal
 		Assertions.assertEquals(new BigDecimal("149.25"), bankAccount.getAllTransactions().get(1).getBalance());
 	}
-	
+
+	// third case of test (GETALLTRANSACTIONS)
 	@Test
-    public void testGetAllTransactions() {
-        // affect deposit and withdraw to an account
-        bankAccount.deposit(new BigDecimal("100.00"));
-        bankAccount.withdraw(new BigDecimal("50.00"));
-        bankAccount.deposit(new BigDecimal("75.50"));
+	public void testGetAllTransactions() {
+		// affect deposit and withdraw to an account
+		bankAccount.deposit(new BigDecimal("100.00"));
+		bankAccount.withdraw(new BigDecimal("50.00"));
+		bankAccount.deposit(new BigDecimal("75.50"));
 
-        // get history of an account
-        List<Transaction> accountStatement = bankAccount.getAllTransactions();
+		// get history of an account
+		List<Transaction> accountStatement = bankAccount.getAllTransactions();
 
-        // verify if the numbers of transactions are correct
-        Assertions.assertEquals(3, accountStatement.size());
+		// verify if the numbers of transactions are correct
+		Assertions.assertEquals(3, accountStatement.size());
 
-        // verify details of the first transaction is correct or not (DEPOSIT)
-        Transaction firstTransaction = accountStatement.get(0);
-        Assertions.assertEquals(TransactionType.DEPOSIT, firstTransaction.getType());
-        Assertions.assertEquals(new BigDecimal("100.00"), firstTransaction.getAmount());
-        Assertions.assertEquals(new BigDecimal("100.00"), firstTransaction.getBalance());
+		// verify details of the first transaction is correct or not (DEPOSIT)
+		Transaction firstTransaction = accountStatement.get(0);
+		Assertions.assertEquals(TransactionType.DEPOSIT, firstTransaction.getType());
+		Assertions.assertEquals(new BigDecimal("100.00"), firstTransaction.getAmount());
+		Assertions.assertEquals(new BigDecimal("100.00"), firstTransaction.getBalance());
 
-        // verify details of the second transaction is correct or not (WITHDRAWAL)
-        Transaction secondTransaction = accountStatement.get(1);
-        Assertions.assertEquals(TransactionType.WITHDRAWAL, secondTransaction.getType());
-        Assertions.assertEquals(new BigDecimal("50.00"), secondTransaction.getAmount());
-        Assertions.assertEquals(new BigDecimal("50.00"), secondTransaction.getBalance());
+		// verify details of the second transaction is correct or not (WITHDRAWAL)
+		Transaction secondTransaction = accountStatement.get(1);
+		Assertions.assertEquals(TransactionType.WITHDRAWAL, secondTransaction.getType());
+		Assertions.assertEquals(new BigDecimal("50.00"), secondTransaction.getAmount());
+		Assertions.assertEquals(new BigDecimal("50.00"), secondTransaction.getBalance());
 
-        // verify details of the third transaction is correct or not (DEPOSIT)
-        Transaction thirdTransaction = accountStatement.get(2);
-        Assertions.assertEquals(TransactionType.DEPOSIT, thirdTransaction.getType());
-        Assertions.assertEquals(new BigDecimal("75.50"), thirdTransaction.getAmount());
-        Assertions.assertEquals(new BigDecimal("125.50"), thirdTransaction.getBalance());
-    }
+		// verify details of the third transaction is correct or not (DEPOSIT)
+		Transaction thirdTransaction = accountStatement.get(2);
+		Assertions.assertEquals(TransactionType.DEPOSIT, thirdTransaction.getType());
+		Assertions.assertEquals(new BigDecimal("75.50"), thirdTransaction.getAmount());
+		Assertions.assertEquals(new BigDecimal("125.50"), thirdTransaction.getBalance());
+	}
 
 }
