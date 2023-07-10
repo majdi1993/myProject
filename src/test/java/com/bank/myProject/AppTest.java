@@ -50,6 +50,9 @@ public class AppTest {
 
 		// get history of an account
 		List<Transaction> accountStatement = bankAccount.getAllTransactions();
+		
+		// print all transactions
+		bankAccount.printStatement();
 
 		// verify if the numbers of transactions are correct
 		Assertions.assertEquals(3, accountStatement.size());
